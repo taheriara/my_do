@@ -1,46 +1,66 @@
 class Task {
   int? id;
   String title;
-  String type;
+  String? details;
+  String category;
   String regDate;
-  String regDateFa;
-  String? doneDateFa;
+  bool done;
+  String? dateFA;
+  String? time;
+  bool favorite;
+  bool archive;
 
   Task({
     this.id,
     required this.title,
-    required this.type,
+    this.details,
+    required this.category,
     required this.regDate,
-    required this.regDateFa,
-    this.doneDateFa,
+    required this.done,
+    this.dateFA,
+    this.time,
+    required this.favorite,
+    required this.archive,
   });
 
   factory Task.fromMap(Map<String, dynamic> json) => Task(
         id: json['id'],
         title: json['title'],
-        type: json['type'],
+        details: json['details'],
+        category: json['category'],
         regDate: json['regDate'],
-        regDateFa: json['regDateFa'],
-        doneDateFa: json['doneDateFa'],
+        done: json['done'] != 0 ? true : false,
+        dateFA: json['dateFA'],
+        time: json['time'],
+        favorite: json['favorite'] != 0 ? true : false,
+        archive: json['archive'] != 0 ? true : false,
       );
 
   Map<String, dynamic> toMap() {
     return {
       'title': title,
-      'type': type,
+      'details': details,
+      'category': category,
       'regDate': regDate,
-      'regDateFa': regDateFa,
+      'done': done ? 1 : 0,
+      'dateFA': dateFA,
+      'time': time,
+      'favorite': favorite ? 1 : 0,
+      'archive': archive ? 1 : 0,
     };
   }
 
   Map<String, dynamic> toMapUpdate() {
     return {
-      'id': id,
       'title': title,
-      'type': type,
+      'details': details,
+      'category': category,
       'regDate': regDate,
-      'regDateFa': regDateFa,
-      'doneDateFa': doneDateFa,
+      'done': done ? 1 : 0,
+      'dateFA': dateFA,
+      'time': time,
+      'favorite': favorite ? 1 : 0,
+      'archive': archive ? 1 : 0,
     };
   }
 }

@@ -76,9 +76,12 @@ class _AddTaskPageState extends State<AddTaskPage> {
                         if (textController.text.isEmpty || typeSelect == '') return;
                         Task newTask = Task(
                             title: textController.text,
-                            type: typeSelect,
+                            category: typeSelect,
                             regDate: DateTime.now().toString(),
-                            regDateFa: DateTime.now().toJalali().toString());
+                            dateFA: DateTime.now().toJalali().toString(),
+                            archive: false,
+                            done: false,
+                            favorite: false);
                         await _taskService.saveTask(newTask);
 
                         setState(() {

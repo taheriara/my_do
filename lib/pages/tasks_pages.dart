@@ -76,10 +76,14 @@ class _TasksPageState extends State<TasksPage> {
               onPressed: () async {
                 if (textController.text.isEmpty || typeSelect == '') return;
                 Task newTask = Task(
-                    title: textController.text,
-                    type: typeSelect,
-                    regDate: DateTime.now().toString(),
-                    regDateFa: DateTime.now().toJalali().toString());
+                  title: textController.text,
+                  category: typeSelect,
+                  regDate: DateTime.now().toString(),
+                  dateFA: DateTime.now().toJalali().toString(),
+                  done: false,
+                  archive: false,
+                  favorite: false,
+                );
                 await _taskService.saveTask(newTask);
                 print('added--------');
                 textController.clear();
@@ -111,7 +115,10 @@ class _TasksPageState extends State<TasksPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tasks')),
+      appBar: AppBar(
+        title: Text('تکالیف'),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -128,7 +135,7 @@ class _TasksPageState extends State<TasksPage> {
         itemBuilder: (context, index) {
           final task = tasks[index];
 
-          return _box(id: task.id, title: task.title, leading: task.type, context: context);
+          return _box(id: task.id, title: task.title, leading: task.category, context: context);
         },
       ),
       //   itemBuilder: (context, index) => Text(tasks[index].title),
