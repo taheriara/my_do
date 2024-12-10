@@ -16,11 +16,11 @@ class Task {
     this.details,
     required this.category,
     required this.regDate,
-    required this.done,
+    this.done = false,
     this.dateFA,
     this.time,
-    required this.favorite,
-    required this.archive,
+    this.favorite = false,
+    this.archive = false,
   });
 
   factory Task.fromMap(Map<String, dynamic> json) => Task(
